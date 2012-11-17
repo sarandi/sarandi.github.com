@@ -1,37 +1,27 @@
 (function($){
 	$.fn.jtextsizer = function(){
 		var options = {
-    	'sizedefault': '16px',
-    	'inc': 20,
-    	's': "<li class=\"minus\">A</li>",
-    	'd': "<li class=\"default\">A</li>",
-    	'l': "<li class=\"plus\">A</li>",
-    	'cr': "\r\n"
+    	sizedefault: "21px",
+    	inc: 20,
+    	cr: "\r\n"
 		};
 
 		var temp = [
    		"<ul class=\"textsizer clearfix round\">",
-   		options.s,
-   		options.d,
-   		options.l,
+   		"<li class=\"minus\">A</li>",
+    	"<li class=\"default\">A</li>",
+    	"<li class=\"plus\">A</li>",
    		"</ul>"
 		];
 
-		var sizer = function() {
-    	var output = temp.join(options.cr);
-    	return output;
-		};
-
 		var newsize = function(operator) {
-    	var size = $("p").css("font-size");
-			var start = parseInt(size.replace(/px/, ""),10);	
+			var start = parseInt($("p").css("font-size").replace(/px/, ""),10);	
 			return operator==="plus" ? start+options.inc : start-options.inc;
 		};
 		
 		return this.each(function(){
-			$(this).after(sizer);
+			$(this).after(temp.join(options.cr));
 			$(".textsizer li").click(function() {
-				console.log("test");
 				var currentli = $(this).attr("class");
 				currentli!=="default" ? $("p").css("font-size", newsize(currentli) + "px") : $("p").css({'font-size': options.sizedefault});
 			});
