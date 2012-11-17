@@ -17,7 +17,7 @@
 		return this.each(function () {
 			$(this).after(temp.join(options.cr));
 			$(".textsizer li").click(function () {
-				var currentli = $(this).attr("class"),
+				var	currentli = $(this).attr("class"),
 					startsize = parseInt($("p").css("font-size").replace(/px/, ""), 10);
 				switch (currentli) {
 				case 'plus':
